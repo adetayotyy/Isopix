@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Isopix Module</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link the Font Awesome CSS file from their CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .check-icon {
+            display: none;
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <header>
+        <div class="left-box">
+            <img src="image.jpg" alt="Your Image">
+        </div>
+        <h1>Isopix Module</h1>
+        <div class="icons">
+            <!-- Use Font Awesome classes for YouTube and Twitter icons -->
+            <a href="https://www.youtube.com/channel/UCU7gsVH8Axlu0MbIGbCstoQ/" target="_blank" class="youtube-icon">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <!-- Add a small space between the icons -->
+            <span class="icon-space"></span>
+            <a href="https://twitter.com/adetayoademola_" target="_blank" class="twitter-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Module Info Container -->
+    <div class="container-module-info">
+        <h2>Module Information</h2>
+        <p>
+        Isopix is a powerful Python library that offers a user-friendly and intuitive approach to automate tasks in Isotropix's Clarisse software. With its Houdini-like syntax, 
+        <br>
+        Isopix serves as a valuable alternative to Clarisse's native Python API, enabling users to easily learn and utilize Python for automating various tasks.
+        </p>
+        <p style="text-align: center; font-size: 13px;">Requires Python 3.7 or Later, Below are some quick start examples</p>
+
+
+    </div>
+    <div class="container">
+        <h2>Create Node</h2>
+        <p>This example demonstrates how to create a new node in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+# Create a new 'polysphere' node with the name 'my_sphere'.
+isopix.createNode('GeometryPolysphere', 'my_sphere')
+
+print("Successfully created a new 'polysphere' node with the name 'my_sphere'.")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+Successfully created a new 'polysphere' node with the name 'my_sphere'.</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Create Reference Node</h2>
+        <p>This example demonstrates how to create a file reference node in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+
+# Create a file reference node in the '/my_context' context with the specified geometry file path.
+isopix.refNode('build://context', 'file_path/to/geometry.usd')
+
+print("Successfully created a file reference node in the 'build://context' context with the specified geometry file path.")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+Successfully created a file reference node in the 'build://context' context with the specified geometry file path.</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get Attributes</h2>
+        <p>This example demonstrates how to get component attribute values of a node in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/my_node'')
+
+translation = node.get_attrib('translate')
+print(f"The translation attribute value is: {translation}")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+The  translation attribute value is: (0,0,0)</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get X, Y, Z Attributes</h2>
+        <p>This example demonstrates how to get X, Y, Z attribute values of a node in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/my_node')
+translation_x = node.get_attrib('translate').x()
+translation_y = node.get_attrib('translate').y()
+translation_z = node.get_attrib('translate').z()
+
+print(f"The X translation attribute value is: {translation_x}")
+print(f"The Y translation attribute value is: {translation_y}")
+print(f"The Z translation attribute value is: {translation_z}")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+The X translation attribute value is: 0
+The Y translation attribute value is: 0
+The Z translation attribute value is: 0</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Set X,Y,Z Component of Attribute</h2>
+        <p>This example demonstrates how to set the X,Y,Z component of an attribute .</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/my_node')
+
+node.set_attrib('translate').x(1)
+node.set_attrib('translate').y(1.2)
+node.set_attrib('translate').z(2.1)
+
+print("Successfully set the X component of the 'translate' attribute to 1.")
+print("Successfully set the Y component of the 'translate' attribute to 1.2.")
+print("Successfully set the Z component of the 'translate' attribute to 2.1.")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+Successfully set the X component of the 'translate' attribute to 1.
+Successfully set the Y component of the 'translate' attribute to 1.2.
+Successfully set the Z component of the 'translate' attribute to 2.1.</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Set  Component of Attribute using  the Set Method</h2>
+        <p>This example demonstrates how to use the set method to set the attribute</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/my_node')
+node_obj.set_attrib('translate').set([4,0.5,12])
+
+print("Successfully set the all component of the 'translate' attribute to [4,0.5,12]")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+Successfully set the all component of the 'translate' attribute to [4,0.5,12].</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get All Nodes in Context</h2>
+        <p>This example demonstrates how to get child nodes of a context in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context')
+children_list = node_obj.children()
+
+print(children_list)</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+{
+    "Name": ['/context/Object1','/context/Object2','/context/Reference1','/context/Reference2','/context/Reference3','/context/Context1','/context/Context2','/context/Context3'],
+    "Instance": [class Isopix obj1, class Isopix obj2,class Isopix ref1, class Isopix ref2, class Isopix ref3,class Isopix cxt1, class Isopix cxt2, class Isopix cxt3]
+}</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Filter Selection of  Object, Context, and Reference Nodes in a Context</h2>
+        <p>This example demonstrates how to get object, context, and reference nodes in a context in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context')
+
+objects = node.children().obj()
+contexts= node.children().cxt()
+references = node.children().ref()
+
+print('Objects are:' + str(objects))
+print('Contexts are:' + str(contexts))
+print('References are:' + str(references))</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+Objects are: {Name: ['/context/Object1','/context/Object2'], Instance: [class Isopix obj1, class Isopix obj2]}
+Contexts are: {Name: ['/context/Context1','/context/Context2','/context/Context3'], Instance: [class Isopix cxt1, class Isopix cxt2, class Isopix cxt3]}
+References are: {Name: ['/context/Reference1','/context/Reference2','/context/Reference3'], Instance: [class Isopix ref1, class Isopix ref2, class Isopix ref3]}</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get Node Type</h2>
+        <p>This example demonstrates how to determine the type of a node in Isotropix Clarisse and get boolean values.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context')
+
+# Check if the node is a reference node.
+is_reference = node.is_ref()
+print(f"Is Reference Node: {is_reference}")
+
+# Check if the node is an object node.
+is_object = node.is_obj()
+print(f"Is Object Node: {is_object}")
+
+# Check if the node is a context node.
+is_context = node.is_cxt()
+print(f"Is Context Node: {is_context}")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+Is Reference Node: False
+Is Object Node: False
+Is Context Node: True</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get Name of Node</h2>
+        <p>This example demonstrates how to get the name of a node in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/polysphere')
+node_name = node.name()
+
+print(f"The name of the node is: {node_name}")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+The name of the node is: polysphere</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get Path of Node</h2>
+        <p>This example demonstrates how to get the path of a node in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/my_node')
+node_path = node.path()
+
+print(f"The path of the node is: {node_path}")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+The path of the node is: /my_context/my_node</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get Context of Node</h2>
+        <p>This example demonstrates how to get the context of a node in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/node')
+context_node = node.get_context()
+
+print(f"The context of the node is: {context_node}")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+The context of the node is: /context</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Get Child Node by Name</h2>
+        <p>This example demonstrates how to get a specific child node of a context by its name in Isotropix Clarisse.</p>
+        <div class="code-example">
+            <pre># Import the required module.
+from Isopix import isopix
+
+# Initialize the node object from the isopix module with the specified context path.
+node = isopix.node('/context/my_sphere')
+child_node = node.child('my_sphere')
+
+print(f"Child node 'my_sphere': {child_node}")</pre>
+        </div>
+        <div class="code-output">
+            <pre><span class="comment"># Output/result: </span>
+Child node 'my_sphere': 'build://context/my_sphere'</pre>
+        </div>
+        <div class="copy-icon" onclick="copyCodeToClipboard(this)">
+            <i class="fas fa-copy"></i>
+            <i class="fas fa-check check-icon"></i>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-image">
+            <img src="image.jpg" alt="Your Image">
+        </div>
+        <div class="footer-info">
+            <p>Adetayo Ademola</p>
+            <p>VFX Enthusiast</p>
+            <!-- Make the email address a clickable link -->
+            <a href="mailto:adetayoty@gmail.com">adetayoty@gmail.com</a>
+            <p>Copyright 2023</p>
+        </div>
+    </footer>
+
+   
+
+    <script>
+        function copyCodeToClipboard(iconElement) {
+            const containerElement = iconElement.parentElement;
+            const codeElement = containerElement.querySelector('.code-example pre');
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeElement.textContent.trim();
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            // Change to the check icon to indicate successful copying
+            iconElement.querySelector('.fa-copy').style.display = 'none';
+            iconElement.querySelector('.check-icon').style.display = 'block';
+
+            // Revert back to the copy icon after 2 seconds (adjust the delay as needed)
+            setTimeout(() => {
+                iconElement.querySelector('.fa-copy').style.display = 'block';
+                iconElement.querySelector('.check-icon').style.display = 'none';
+            }, 2000); // 2 seconds delay
+        }
+    </script>
+
+</body>
+</html>
